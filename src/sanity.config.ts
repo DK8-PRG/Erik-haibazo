@@ -3,7 +3,6 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import type { StructureBuilder } from "sanity/structure";
-import { colorInput } from "@sanity/color-input";
 import { csCZLocale } from "@sanity/locale-cs-cz";
 import { schemaTypes } from "@/sanity/index";
 import { projectId, dataset } from "@/lib/sanity/env";
@@ -69,7 +68,7 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: "/studio",
-  plugins: [structureTool({ structure }), colorInput(), csCZLocale()],
+  plugins: [structureTool({ structure }), csCZLocale()],
   schema: {
     types: schemaTypes,
     // Skryj singleton a object typy z "New document" menu

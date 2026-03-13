@@ -8,11 +8,11 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   seoDescription,
   ogImage { asset -> { url } },
   colors {
-    "accent": accent.hex,
-    "accentDark": accentDark.hex,
-    "background": background.hex,
-    "backgroundAlt": backgroundAlt.hex,
-    "foreground": foreground.hex
+    accent,
+    accentDark,
+    background,
+    backgroundAlt,
+    foreground
   },
   socialLinks[] {
     platform,

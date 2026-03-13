@@ -1,5 +1,13 @@
 import { defineType, defineField } from "sanity";
 
+const brandColorList = [
+  { title: "Žlutá", value: "#FFDF40" },
+  { title: "Zlatá", value: "#B89900" },
+  { title: "Černá", value: "#141100" },
+  { title: "Krémová", value: "#FFF5C2" },
+  { title: "Bílá", value: "#FFFFFF" },
+];
+
 export const siteSettings = defineType({
   name: "siteSettings",
   title: "Nastavení webu",
@@ -68,71 +76,41 @@ export const siteSettings = defineType({
         defineField({
           name: "accent",
           title: "Primární akcent (žlutá)",
-          type: "color",
+          type: "string",
           options: {
-            colorList: [
-              { label: "Žlutá", value: "#FFDF40" },
-              { label: "Zlatá", value: "#B89900" },
-              { label: "Černá", value: "#141100" },
-              { label: "Krémová", value: "#FFF5C2" },
-              { label: "Bílá", value: "#FFFFFF" },
-            ],
+            list: brandColorList,
           },
         }),
         defineField({
           name: "accentDark",
           title: "Sekundární akcent (zlatá)",
-          type: "color",
+          type: "string",
           options: {
-            colorList: [
-              { label: "Žlutá", value: "#FFDF40" },
-              { label: "Zlatá", value: "#B89900" },
-              { label: "Černá", value: "#141100" },
-              { label: "Krémová", value: "#FFF5C2" },
-              { label: "Bílá", value: "#FFFFFF" },
-            ],
+            list: brandColorList,
           },
         }),
         defineField({
           name: "background",
           title: "Pozadí",
-          type: "color",
+          type: "string",
           options: {
-            colorList: [
-              { label: "Žlutá", value: "#FFDF40" },
-              { label: "Zlatá", value: "#B89900" },
-              { label: "Černá", value: "#141100" },
-              { label: "Krémová", value: "#FFF5C2" },
-              { label: "Bílá", value: "#FFFFFF" },
-            ],
+            list: brandColorList,
           },
         }),
         defineField({
           name: "foreground",
           title: "Text",
-          type: "color",
+          type: "string",
           options: {
-            colorList: [
-              { label: "Žlutá", value: "#FFDF40" },
-              { label: "Zlatá", value: "#B89900" },
-              { label: "Černá", value: "#141100" },
-              { label: "Krémová", value: "#FFF5C2" },
-              { label: "Bílá", value: "#FFFFFF" },
-            ],
+            list: brandColorList,
           },
         }),
         defineField({
           name: "backgroundAlt",
           title: "Alternativní pozadí (krémová)",
-          type: "color",
+          type: "string",
           options: {
-            colorList: [
-              { label: "Žlutá", value: "#FFDF40" },
-              { label: "Zlatá", value: "#B89900" },
-              { label: "Černá", value: "#141100" },
-              { label: "Krémová", value: "#FFF5C2" },
-              { label: "Bílá", value: "#FFFFFF" },
-            ],
+            list: brandColorList,
           },
         }),
       ],
