@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { getLinktree } from "@/lib/sanity/queries";
-
-export const dynamic = "force-dynamic";
 import {
   FaInstagram,
   FaFacebook,
@@ -13,6 +11,8 @@ import {
 } from "react-icons/fa";
 import { FaTiktok, FaXTwitter } from "react-icons/fa6";
 import type { IconType } from "react-icons";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Erik Haibazo — Odkazy",

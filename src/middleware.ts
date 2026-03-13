@@ -28,11 +28,12 @@ function getLocaleFromHeaders(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip studio, api, _next, and static files
+  // Skip studio, api, _next, static files, and /links (clean share URL)
   if (
     pathname.startsWith("/studio") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
+    pathname === "/links" ||
     pathname.includes(".") // static files
   ) {
     return NextResponse.next();
