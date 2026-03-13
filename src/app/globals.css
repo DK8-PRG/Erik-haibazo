@@ -3,10 +3,18 @@
 @tailwind utilities;
 
 :root {
+  /* Brand palette */
+  --color-yellow: #ffdf40;
+  --color-gold: #b89900;
+  --color-black: #141100;
+  --color-cream: #fff5c2;
+
+  /* Sémantické tokeny */
   --background: #ffffff;
-  --background-alt: #f7f7f7;
-  --foreground: #111111;
-  --accent: #ffd23f;
+  --background-alt: var(--color-cream);
+  --foreground: var(--color-black);
+  --accent: var(--color-yellow);
+  --accent-dark: var(--color-gold);
 }
 
 * {
@@ -23,7 +31,7 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   line-height: 1.65;
 }
 
@@ -31,13 +39,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
-  letter-spacing: -0.01em;
-  color: #111111;
+  font-family: var(--font-heading), Georgia, serif;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
 }
 
 p {
-  color: #2f2f2f;
+  color: var(--color-black);
 }
 
 a {

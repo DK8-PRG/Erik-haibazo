@@ -3,3 +3,12 @@ node_modules
 out
 .DS_Store
 npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+_docs
+
+.github
