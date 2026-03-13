@@ -1,4 +1,5 @@
 import { client } from "./client";
+import { projectId, dataset } from "./env";
 
 // ─── Site Settings (singleton) ───────────────────────────────────────────────
 const siteSettingsQuery = `*[_type == "siteSettings"][0]{
@@ -46,6 +47,7 @@ export type SiteSettingsData = {
 } | null;
 
 export async function getSiteSettings(): Promise<SiteSettingsData> {
+  if (!projectId || !dataset) return null;
   return client.fetch(
     siteSettingsQuery,
     {},
@@ -92,6 +94,7 @@ export type LinktreeData = {
 } | null;
 
 export async function getLinktree(): Promise<LinktreeData> {
+  if (!projectId || !dataset) return null;
   return client.fetch(
     linktreeQuery,
     {},

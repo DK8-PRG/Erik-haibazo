@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { getLinktree } from "@/lib/sanity/queries";
+
+export const dynamic = "force-dynamic";
 import {
   FaInstagram,
   FaFacebook,
