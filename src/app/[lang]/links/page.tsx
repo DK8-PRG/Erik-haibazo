@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { getLinktree } from "@/lib/sanity/queries";
 import {
   FaInstagram,
@@ -28,7 +29,12 @@ const ICON_MAP: Record<string, IconType> = {
   twitter: FaXTwitter,
 };
 
-export default async function LinksPage() {
+type LinksPageProps = {
+  params: Promise<{ lang: string }>;
+};
+
+export default async function LinksPage({ params }: LinksPageProps) {
+  const { lang } = await params;
   const data = await getLinktree();
 
   if (!data) {
@@ -42,17 +48,23 @@ export default async function LinksPage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#FFDF40]">
       {/* Obsah */}
-      <div className="relative z-10 flex flex-1 flex-col items-center px-4 pt-10">
+      <div className="relative z-10 flex flex-1 flex-col items-center px-4 pt-10 pb-6">
         {/* Logo */}
         <div className="mb-8">
-          <Image
-            src="/materials/logo.svg"
-            alt="Erik Haibazo"
-            width={200}
-            height={120}
-            className="h-auto w-48"
-            priority
-          />
+          <Link
+            href={`/${lang}`}
+            aria-label="Přejít na domovskou stránku"
+            className="inline-block transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98]"
+          >
+            <Image
+              src="/materials/logo.svg"
+              alt="Erik Haibazo"
+              width={200}
+              height={120}
+              className="h-auto w-48"
+              priority
+            />
+          </Link>
         </div>
 
         {/* Odkazy */}
@@ -84,8 +96,16 @@ export default async function LinksPage() {
         </div>
       </div>
 
+      {data.footerText && (
+        <div className="relative z-20 px-4 pb-2">
+          <p className="text-center font-body text-xs text-brand-black/55">
+            {data.footerText}
+          </p>
+        </div>
+      )}
+
       {/* Dekorace — rostliny (background) */}
-      <div className="pointer-events-none absolute inset-x-0 -bottom-20 z-0 flex justify-center">
+      <div className="pointer-events-none absolute inset-x-0 -bottom-14 z-0 flex justify-center">
         <Image
           src="/materials/rostliny.svg"
           alt=""
