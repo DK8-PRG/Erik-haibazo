@@ -8,7 +8,15 @@ import { schemaTypes } from "@/sanity/index";
 import { projectId, dataset } from "@/lib/sanity/env";
 
 // Singletons — dokumenty, které existují vždy jen v jedné kopii
-const singletonTypes = new Set(["siteSettings", "linktreePage"]);
+const singletonTypes = new Set([
+  "siteSettings",
+  "linktreePage",
+  "homepage",
+  "aboutPage",
+]);
+
+// Skrýt typy, které nejsou přímé dokumenty (objekty)
+const hiddenTypes = new Set(["blockContent", "imageWithAlt", "seo"]);
 
 function structure(S: StructureBuilder) {
   return S.list()
@@ -27,6 +35,29 @@ function structure(S: StructureBuilder) {
         .child(
           S.document().schemaType("linktreePage").documentId("linktreePage"),
         ),
+      S.divider(),
+      S.listItem()
+        .title("Domovská stránka")
+        .icon(() => "🏠")
+        .child(S.document().schemaType("homepage").documentId("homepage")),
+      S.listItem()
+        .title("O Erikovi")
+        .icon(() => "👤")
+        .child(S.document().schemaType("aboutPage").documentId("aboutPage")),
+      S.divider(),
+      S.listItem()
+        .title("Recepty")
+        .icon(() => "🍜")
+        .child(S.documentTypeList("recipe").title("Recepty")),
+      S.listItem()
+        .title("Kategorie")
+        .icon(() => "🏷️")
+        .child(S.documentTypeList("category").title("Kategorie")),
+      S.divider(),
+      S.listItem()
+        .title("Články")
+        .icon(() => "📰")
+        .child(S.documentTypeList("article").title("Články")),
     ]);
 }
 
@@ -39,8 +70,11 @@ export default defineConfig({
   plugins: [structureTool({ structure }), colorInput()],
   schema: {
     types: schemaTypes,
-    // Skryj singleton typy z "New document" menu
+    // Skryj singleton a object typy z "New document" menu
     templates: (templates) =>
-      templates.filter((t) => !singletonTypes.has(t.schemaType)),
+      templates.filter(
+        (t) =>
+          !singletonTypes.has(t.schemaType) && !hiddenTypes.has(t.schemaType),
+      ),
   },
 });

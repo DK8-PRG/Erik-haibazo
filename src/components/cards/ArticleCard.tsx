@@ -4,18 +4,24 @@ import { Article } from "@/lib/types";
 
 type ArticleCardProps = {
   article: Article;
+  lang: string;
 };
 
-export function ArticleCard({ article }: ArticleCardProps) {
-  const date = new Date(article.publishedAt).toLocaleDateString("cs-CZ", {
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-  });
+const dateLocaleMap: Record<string, string> = { cs: "cs-CZ", en: "en-US" };
+
+export function ArticleCard({ article, lang }: ArticleCardProps) {
+  const date = new Date(article.publishedAt).toLocaleDateString(
+    dateLocaleMap[lang] ?? "cs-CZ",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    },
+  );
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition hover:-translate-y-1 hover:shadow-sm">
-      <Link href={`/magazine/${article.slug}`} className="block">
+      <Link href={`/${lang}/magazine/${article.slug}`} className="block">
         <div className="relative aspect-[16/10] overflow-hidden">
           <Image
             src={article.coverImage}
@@ -25,8 +31,12 @@ export function ArticleCard({ article }: ArticleCardProps) {
           />
         </div>
         <div className="space-y-2 p-4">
-          <p className="text-xs uppercase tracking-wider text-neutral-500">{date}</p>
-          <h3 className="text-xl leading-snug text-[#111111]">{article.title}</h3>
+          <p className="text-xs uppercase tracking-wider text-neutral-500">
+            {date}
+          </p>
+          <h3 className="text-xl leading-snug text-[#111111]">
+            {article.title}
+          </h3>
           <p className="text-sm text-neutral-700">{article.excerpt}</p>
         </div>
       </Link>

@@ -4,12 +4,13 @@ import { Recipe } from "@/lib/types";
 
 type RecipeCardProps = {
   recipe: Recipe;
+  lang: string;
 };
 
-export function RecipeCard({ recipe }: RecipeCardProps) {
+export function RecipeCard({ recipe, lang }: RecipeCardProps) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition hover:-translate-y-1 hover:shadow-sm">
-      <Link href={`/recipes/${recipe.slug}`} className="block">
+      <Link href={`/${lang}/recipes/${recipe.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={recipe.coverImage}
@@ -22,9 +23,13 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
           </span>
         </div>
         <div className="space-y-2 p-4">
-          <h3 className="text-xl leading-snug text-[#111111]">{recipe.title}</h3>
+          <h3 className="text-xl leading-snug text-[#111111]">
+            {recipe.title}
+          </h3>
           <p className="text-sm text-neutral-700">{recipe.excerpt}</p>
-          <p className="text-xs uppercase tracking-wider text-neutral-500">{recipe.timeMinutes} min</p>
+          <p className="text-xs uppercase tracking-wider text-neutral-500">
+            {recipe.timeMinutes} min
+          </p>
         </div>
       </Link>
     </article>

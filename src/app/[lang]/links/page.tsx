@@ -56,37 +56,44 @@ export default async function LinksPage() {
         </div>
 
         {/* Odkazy */}
-        <div className="flex w-full max-w-sm flex-col gap-2">
-          {data.links?.map((link) => {
+        <div className="flex w-full max-w-sm flex-col items-center">
+          {data.links?.map((link, i) => {
             const Icon = link.icon ? ICON_MAP[link.icon] : null;
+            const isLast = i === (data.links?.length ?? 0) - 1;
             return (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-4 text-center font-body font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] ${
-                  link.featured
-                    ? "bg-brand-black text-brand-yellow"
-                    : "bg-white text-brand-black"
-                }`}
-              >
-                {Icon && <Icon size={18} />}
-                {link.label}
-              </a>
+              <div key={i} className="flex w-full flex-col items-center">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-4 text-center font-body font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] ${
+                    link.featured
+                      ? "bg-brand-black text-brand-yellow"
+                      : "bg-white text-brand-black"
+                  }`}
+                >
+                  {Icon && <Icon size={18} />}
+                  {link.label}
+                </a>
+                {!isLast && (
+                  <span className="my-1 text-xl text-brand-black/30">↓</span>
+                )}
+              </div>
             );
           })}
         </div>
       </div>
 
       {/* Footer — rostliny */}
-      <div className="relative mt-auto h-[220px] w-full overflow-hidden">
-        <Image
+      <div
+        className="mt-auto w-full overflow-hidden"
+        style={{ height: "220px" }}
+      >
+        <img
           src="/materials/rostliny.svg"
           alt=""
-          fill
           aria-hidden
-          className="pointer-events-none select-none object-cover object-bottom"
+          className="pointer-events-none w-full select-none"
         />
       </div>
     </div>

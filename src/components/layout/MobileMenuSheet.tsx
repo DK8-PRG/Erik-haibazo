@@ -4,21 +4,23 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+type NavLink = { href: string; label: string };
+
 type MobileMenuSheetProps = {
   isOpen: boolean;
   onClose: () => void;
+  links: NavLink[];
+  menuLabel: string;
+  closeMenuLabel: string;
 };
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/recipes", label: "Recepty" },
-  { href: "/magazine", label: "Magazin" },
-  { href: "/about", label: "O mne" },
-  { href: "/contact", label: "Kontakt" },
-  { href: "/admin", label: "Admin" }
-];
-
-export function MobileMenuSheet({ isOpen, onClose }: MobileMenuSheetProps) {
+export function MobileMenuSheet({
+  isOpen,
+  onClose,
+  links,
+  menuLabel,
+  closeMenuLabel,
+}: MobileMenuSheetProps) {
   const pathname = usePathname();
 
   useEffect(() => {
@@ -29,8 +31,8 @@ export function MobileMenuSheet({ isOpen, onClose }: MobileMenuSheetProps) {
   }, [isOpen]);
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(`${href}/`);
+    if (href === pathname) return true;
+    return pathname.startsWith(`${href}/`);
   };
 
   return (
@@ -42,24 +44,24 @@ export function MobileMenuSheet({ isOpen, onClose }: MobileMenuSheetProps) {
         type="button"
         onClick={onClose}
         className={`absolute inset-0 bg-neutral-200/60 transition ${isOpen ? "opacity-100" : "opacity-0"}`}
-        aria-label="Zavrit menu"
+        aria-label={closeMenuLabel}
       />
       <aside
         className={`absolute right-0 top-0 h-full w-72 bg-white p-6 shadow-xl transition-transform duration-200 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="mb-10 text-lg font-semibold">Menu</div>
+        <div className="mb-10 text-lg font-semibold">{menuLabel}</div>
         <nav className="space-y-5">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className={`block text-base transition ${
+              className={`block border-l-2 pl-3 text-base transition-all ${
                 isActive(link.href)
-                  ? "font-semibold text-neutral-950"
-                  : "text-neutral-800 hover:text-neutral-950"
+                  ? "border-[#FFD23F] font-semibold text-neutral-950"
+                  : "border-transparent text-neutral-600 hover:border-[#FFD23F] hover:text-neutral-950"
               }`}
             >
               {link.label}

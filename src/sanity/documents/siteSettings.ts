@@ -32,6 +32,12 @@ export const siteSettings = defineType({
       type: "file",
       options: { accept: "image/*,.ico" },
     }),
+    defineField({
+      name: "profileImage",
+      title: "Profilový obrázek (SVG / PNG)",
+      type: "file",
+      options: { accept: "image/*" },
+    }),
 
     // ─── SEO výchozí hodnoty ─────────────────────────────────────────────────
     defineField({
@@ -167,12 +173,10 @@ export const siteSettings = defineType({
               title: "URL",
               type: "url",
               validation: (rule) =>
-                rule
-                  .required()
-                  .uri({
-                    allowRelative: false,
-                    scheme: ["http", "https", "mailto"],
-                  }),
+                rule.required().uri({
+                  allowRelative: false,
+                  scheme: ["http", "https", "mailto"],
+                }),
             }),
           ],
           preview: {

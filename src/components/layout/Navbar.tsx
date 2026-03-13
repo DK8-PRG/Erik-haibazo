@@ -6,17 +6,23 @@ import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { MobileMenuSheet } from "@/components/layout/MobileMenuSheet";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/recipes", label: "Recepty" },
-  { href: "/magazine", label: "Magazin" },
-  { href: "/about", label: "O mne" },
-  { href: "/contact", label: "Kontakt" },
-  { href: "/admin", label: "Admin" }
-];
+type NavLink = { href: string; label: string };
 
-export function Navbar() {
+type NavbarProps = {
+  links: NavLink[];
+  menuLabel: string;
+  closeMenuLabel: string;
+  lang: string;
+};
+
+export function Navbar({
+  links,
+  menuLabel,
+  closeMenuLabel,
+  lang,
+}: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -29,7 +35,8 @@ export function Navbar() {
   }, []);
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
+    if (href === `/${lang}`)
+      return pathname === `/${lang}` || pathname === `/${lang}/`;
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
@@ -40,35 +47,47 @@ export function Navbar() {
       }`}
     >
       <Container className="flex h-16 items-center justify-between">
-        <BrandLogo className="text-lg" />
+        <Link href={`/${lang}`}>
+          <BrandLogo className="text-lg" />
+        </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm transition ${
+              className={`relative text-sm transition-colors after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:bg-[#FFD23F] after:transition-[width] after:duration-200 ${
                 isActive(item.href)
-                  ? "font-semibold text-[#111111]"
-                  : "text-neutral-700 hover:text-[#111111]"
+                  ? "font-semibold text-[#111111] after:w-full"
+                  : "text-neutral-700 hover:text-[#111111] after:w-0 hover:after:w-full"
               }`}
             >
               {item.label}
             </Link>
           ))}
+          <LanguageSwitcher lang={lang} />
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-800 transition hover:border-neutral-500 md:hidden"
-          aria-label="Open menu"
-        >
-          Menu
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageSwitcher lang={lang} />
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-800 transition hover:border-neutral-500"
+            aria-label={menuLabel}
+          >
+            {menuLabel}
+          </button>
+        </div>
       </Container>
 
-      <MobileMenuSheet isOpen={open} onClose={() => setOpen(false)} />
+      <MobileMenuSheet
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        links={links}
+        menuLabel={menuLabel}
+        closeMenuLabel={closeMenuLabel}
+      />
     </header>
   );
 }

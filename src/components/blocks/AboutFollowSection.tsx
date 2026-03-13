@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
+import type { Dictionary } from "@/lib/i18n/dictionaries/cs";
+
+type AboutFollowSectionProps = {
+  dict: Dictionary["aboutFollow"];
+  lang: string;
+};
 
 const socialLinks = [
   {
@@ -53,7 +59,7 @@ const socialLinks = [
   },
 ];
 
-export function AboutFollowSection() {
+export function AboutFollowSection({ dict, lang }: AboutFollowSectionProps) {
   return (
     <Section className="bg-[#F3F3F3] py-14 sm:py-18">
       <div className="overflow-hidden rounded-3xl border border-[#DCC28B]/55 bg-[linear-gradient(130deg,#F7DA82_0%,#F4CC6F_52%,#EEC160_100%)] shadow-[0_14px_28px_-24px_rgba(70,35,0,0.3)]">
@@ -69,21 +75,17 @@ export function AboutFollowSection() {
                 />
               </div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64400F]">
-                Creator Brand
+                {dict.badge}
               </span>
             </div>
 
             <h2 className="max-w-xl text-[1.9rem] font-extrabold leading-[1.1] text-[#311C05] sm:text-[2.3rem] lg:text-[2.65rem]">
-              Pojd varit se mnou. Prvni inspirace mas hned ted.
+              {dict.title}
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[#53360A] sm:text-[1.05rem]">
-              Jmenuju se Erik Haibazo a tvorim jednoduche recepty s asijskym
-              twistem. Kazdy tyden nove video, tipy do kuchyne a poctive jidlo
-              bez slozitosti.
+              {dict.description}
             </p>
-            <p className="mt-3 text-sm text-[#6A4512]">
-              Spoluprace nebo dotaz? Napis mi do DM.
-            </p>
+            <p className="mt-3 text-sm text-[#6A4512]">{dict.dmNote}</p>
 
             <div className="mt-6 flex flex-wrap items-center gap-2.5">
               {socialLinks.map((social) => (
@@ -99,10 +101,10 @@ export function AboutFollowSection() {
             </div>
 
             <Link
-              href="/about"
+              href={`/${lang}/about`}
               className="mt-7 inline-flex rounded-xl bg-[#5A3510] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.05em] text-white shadow-[0_6px_14px_-10px_rgba(40,20,0,0.9)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#6A4013] hover:shadow-[0_14px_22px_-14px_rgba(40,20,0,0.9)] active:translate-y-0"
             >
-              Vice o mne
+              {dict.cta}
             </Link>
           </div>
 
