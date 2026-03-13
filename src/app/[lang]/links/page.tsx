@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getLinktree } from "@/lib/sanity/queries";
 
-export const dynamic = "force-dynamic";
 import {
   FaInstagram,
   FaFacebook,

@@ -67,6 +67,13 @@ export function MobileMenuSheet({
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/studio"
+            onClick={onClose}
+            className="mt-4 block border-l-2 border-transparent pl-3 text-sm text-neutral-400 transition-all hover:border-[#FFD23F] hover:text-neutral-700"
+          >
+            Studio
+          </Link>
         </nav>
       </aside>
     </div>

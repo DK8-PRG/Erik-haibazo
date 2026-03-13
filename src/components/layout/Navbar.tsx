@@ -66,6 +66,12 @@ export function Navbar({
             </Link>
           ))}
           <LanguageSwitcher lang={lang} />
+          <Link
+            href="/studio"
+            className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs text-neutral-500 transition hover:border-neutral-500 hover:text-neutral-800"
+          >
+            Studio
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">
