@@ -40,9 +40,9 @@ export default async function LinksPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FFDF40]">
+    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#FFDF40]">
       {/* Obsah */}
-      <div className="flex flex-1 flex-col items-center px-4 pt-10">
+      <div className="relative z-10 flex flex-1 flex-col items-center px-4 pt-10">
         {/* Logo */}
         <div className="mb-8">
           <Image
@@ -84,16 +84,15 @@ export default async function LinksPage() {
         </div>
       </div>
 
-      {/* Footer — rostliny */}
-      <div
-        className="mt-auto w-full overflow-hidden"
-        style={{ height: "220px" }}
-      >
-        <img
+      {/* Dekorace — rostliny (background) */}
+      <div className="pointer-events-none absolute inset-x-0 -bottom-20 z-0 flex justify-center">
+        <Image
           src="/materials/rostliny.svg"
           alt=""
+          width={768}
+          height={422}
           aria-hidden
-          className="pointer-events-none w-full select-none"
+          className="h-auto w-[768px] min-w-[768px] max-w-none select-none"
         />
       </div>
     </div>

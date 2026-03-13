@@ -59,8 +59,13 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
 }
 
 // ─── Linktree page (singleton) ───────────────────────────────────────────────
-const linktreeQuery = `*[_type == "linktreePage" && _id == "linktreePage"][0]{
+const linktreeQuery = `*[_type == "linktreePage"][0]{
   title,
+  subtitle,
+  profileImage { asset -> { url } },
+  backgroundColor,
+  textColor,
+  footerText,
   links[]{
     label,
     url,
@@ -78,6 +83,11 @@ export type LinktreeLink = {
 
 export type LinktreeData = {
   title: string;
+  subtitle?: string;
+  profileImage?: { asset: { url: string } };
+  backgroundColor?: string;
+  textColor?: string;
+  footerText?: string;
   links?: LinktreeLink[];
 } | null;
 

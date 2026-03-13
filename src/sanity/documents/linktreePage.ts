@@ -12,6 +12,36 @@ export const linktreePage = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "subtitle",
+      title: "Podnadpis",
+      type: "string",
+      description: "Krátký popis pod názvem",
+    }),
+    defineField({
+      name: "profileImage",
+      title: "Profilový obrázek / logo",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "backgroundColor",
+      title: "Barva pozadí",
+      type: "string",
+      initialValue: "#FFDF40",
+    }),
+    defineField({
+      name: "textColor",
+      title: "Barva textu",
+      type: "string",
+      initialValue: "#141100",
+    }),
+    defineField({
+      name: "footerText",
+      title: "Patička (text)",
+      type: "string",
+      description: "Např. © 2026 Erik Haibazo ",
+    }),
+    defineField({
       name: "links",
       title: "Odkazy",
       type: "array",
@@ -32,12 +62,10 @@ export const linktreePage = defineType({
               title: "URL",
               type: "url",
               validation: (rule) =>
-                rule
-                  .required()
-                  .uri({
-                    allowRelative: false,
-                    scheme: ["http", "https", "mailto"],
-                  }),
+                rule.required().uri({
+                  allowRelative: false,
+                  scheme: ["http", "https", "mailto"],
+                }),
             }),
             defineField({
               name: "icon",
