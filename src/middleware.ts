@@ -31,17 +31,18 @@ function basicAuth(request: NextRequest): NextResponse | null {
   if (!sitePassword) return null;
 
   const authHeader = request.headers.get("authorization");
-  if (authHeader) {
-    const encoded = authHeader.split(" ")[1] ?? "";
-    const decoded = Buffer.from(encoded, "base64").toString("utf-8");
-    const [, password] = decoded.split(":");
+  if (authHeader && authHeader.startsWith("Basic ")) {
+    const encoded = authHeader.slice(6); // "Basic " = 6 znaků
+    const decoded = atob(encoded); // atob funguje v Edge Runtime
+    const colonIndex = decoded.indexOf(":");
+    const password = decoded.slice(colonIndex + 1);
     if (password === sitePassword) return null; // OK
   }
 
-  return new NextResponse("Přístup odepřen", {
+  return new NextResponse("Pristup odepren", {
     status: 401,
     headers: {
-      "WWW-Authenticate": 'Basic realm="Haibazo — preview", charset="UTF-8"',
+      "WWW-Authenticate": 'Basic realm="Haibazo"',
     },
   });
 }
