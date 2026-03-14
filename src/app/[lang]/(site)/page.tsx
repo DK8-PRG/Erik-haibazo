@@ -6,8 +6,8 @@ import { RecipeCard } from "@/components/cards/RecipeCard";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { TagPills } from "@/components/ui/TagPills";
-import { articles } from "@/lib/mock/articles";
-import { recipes } from "@/lib/mock/recipes";
+import { getArticles } from "@/lib/sanity/queries";
+import { getRecipes } from "@/lib/sanity/queries";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -18,6 +18,8 @@ export default async function HomePage({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
+
+  const [articles, recipes] = await Promise.all([getArticles(), getRecipes()]);
 
   const featuredArticle = articles[0];
   const magazineItems = articles.slice(1);

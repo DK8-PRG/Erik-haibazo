@@ -1,6 +1,6 @@
 import { RecipeCard } from "@/components/cards/RecipeCard";
 import { Section } from "@/components/ui/Section";
-import { recipes } from "@/lib/mock/recipes";
+import { getRecipes } from "@/lib/sanity/queries";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -11,6 +11,7 @@ export default async function RecipesPage({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
+  const recipes = await getRecipes();
 
   return (
     <Section

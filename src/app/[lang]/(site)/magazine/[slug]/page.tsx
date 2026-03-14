@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Section } from "@/components/ui/Section";
-import { getArticleBySlug } from "@/lib/mock/articles";
+import { getArticleBySlug } from "@/lib/sanity/queries";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -16,7 +16,7 @@ export default async function ArticleDetailPage({
 }: ArticleDetailProps) {
   const { slug, lang } = await params;
   const dict = await getDictionary(lang as Locale);
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
 
   if (!article) {
     notFound();

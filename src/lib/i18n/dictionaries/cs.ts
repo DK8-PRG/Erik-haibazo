@@ -56,17 +56,25 @@ const cs = {
   aboutPage: {
     title: "O mně",
     description:
-      "HAIBAZO je osobní food magazín s důrazem na jednoduchost a kvalitu.",
+      "Právník, foodie a člověk mezi dvěma světy – Vietnamem a Českem.",
     paragraph1:
-      "Sdílím recepty a články, které propojují street food inspiraci s realitou domácí kuchyně. Cílem je chuť, kterou zvládneš zopakovat i během pracovního týdne.",
+      "Xin chào, jsem Erik – právník, který miluje vaření. Narodil jsem se ve Vietnamu, ale většinu života žiju v Česku. Jídlo mě provází od dětství a naučilo mě, že vaření je víc než jen o chuti.",
     paragraph2:
-      "Tenhle web je připravený komponentově, mobile-first a s mock daty tak, aby šel snadno napojit na CMS bez velkého refaktoru.",
+      "Vaření mě učí trpělivosti, pokoře i radosti z maličkostí. Je to hra i meditace, dětská radost i dospělá láska. Hledám v něm rovnováhu – mezi Asií a Evropou, tradicí a novotou, mezi sladkým a slaným.",
+    paragraph3:
+      "Nejvíc mě naplňuje, když můžu jídlo sdílet s ostatními, protože právě tehdy má život chuť. Vaření je pro mě víc než recept – je to způsob, jak dát kousek sebe druhým.",
+    contactLabel: "Kontakt",
+    email: "Erik.haibazo@gmail.com",
   },
   contactPage: {
     title: "Kontakt",
-    description: "Pro spolupráce, dotazy a media requesty.",
-    writeMe: "Napiš mi na:",
-    followNote: "Nebo sleduj HAIBAZO na Instagramu a YouTube.",
+    description: "Spolupráce, dotazy a media requesty — vždy odpovídám.",
+    writeMe: "Napiš mi přímo",
+    writeMeNote: "Odpovídám zpravidla do 24 hodin.",
+    followTitle: "Sleduj mě na sociálních sítích",
+    followNote: "Nové recepty, zákulisí tvorby a kratší tipy každý týden.",
+    collab: "Spolupráce & PR",
+    collabNote: "Produktové spolupráce, recenze, brand deals nebo natáčení — napiš mi na email výše a domluvíme se.",
   },
   magazinePage: {
     title: "Magazín",

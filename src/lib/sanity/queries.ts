@@ -106,3 +106,97 @@ export async function getLinktree(): Promise<LinktreeData> {
     },
   );
 }
+
+// ─── Recipes ─────────────────────────────────────────────────────────────────
+import type { Recipe, Article } from "@/lib/types";
+
+const recipesQuery = `*[_type == "recipe"] | order(_createdAt desc) {
+  title,
+  "slug": slug.current,
+  "coverImage": coverImage.asset->url,
+  timeMinutes,
+  "category": category->title,
+  excerpt
+}`;
+
+const recipeBySlugQuery = `*[_type == "recipe" && slug.current == $slug][0] {
+  title,
+  "slug": slug.current,
+  "coverImage": coverImage.asset->url,
+  timeMinutes,
+  "category": category->title,
+  excerpt
+}`;
+
+export async function getRecipes(): Promise<Recipe[]> {
+  if (!projectId || !dataset) return [];
+  return client.fetch(
+    recipesQuery,
+    {},
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 60 }
+          : { revalidate: 0 },
+    },
+  );
+}
+
+export async function getRecipeBySlug(slug: string): Promise<Recipe | null> {
+  if (!projectId || !dataset) return null;
+  return client.fetch(
+    recipeBySlugQuery,
+    { slug },
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 60 }
+          : { revalidate: 0 },
+    },
+  );
+}
+
+// ─── Articles ────────────────────────────────────────────────────────────────
+const articlesQuery = `*[_type == "article"] | order(publishedAt desc) {
+  title,
+  "slug": slug.current,
+  "coverImage": coverImage.asset->url,
+  publishedAt,
+  excerpt
+}`;
+
+const articleBySlugQuery = `*[_type == "article" && slug.current == $slug][0] {
+  title,
+  "slug": slug.current,
+  "coverImage": coverImage.asset->url,
+  publishedAt,
+  excerpt
+}`;
+
+export async function getArticles(): Promise<Article[]> {
+  if (!projectId || !dataset) return [];
+  return client.fetch(
+    articlesQuery,
+    {},
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 60 }
+          : { revalidate: 0 },
+    },
+  );
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  if (!projectId || !dataset) return null;
+  return client.fetch(
+    articleBySlugQuery,
+    { slug },
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 60 }
+          : { revalidate: 0 },
+    },
+  );
+}

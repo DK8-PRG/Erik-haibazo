@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Section } from "@/components/ui/Section";
-import { getRecipeBySlug } from "@/lib/mock/recipes";
+import { getRecipeBySlug } from "@/lib/sanity/queries";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -12,7 +12,7 @@ type RecipeDetailProps = {
 export default async function RecipeDetailPage({ params }: RecipeDetailProps) {
   const { slug, lang } = await params;
   const dict = await getDictionary(lang as Locale);
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     notFound();

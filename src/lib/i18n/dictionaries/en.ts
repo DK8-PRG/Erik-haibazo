@@ -59,17 +59,25 @@ const en: Dictionary = {
   aboutPage: {
     title: "About",
     description:
-      "HAIBAZO is a personal food magazine focused on simplicity and quality.",
+      "Lawyer, foodie and a person between two worlds – Vietnam and the Czech Republic.",
     paragraph1:
-      "I share recipes and articles that connect street food inspiration with the reality of home cooking. The goal is flavor you can replicate even during a busy workweek.",
+      "Xin chào, I'm Erik – a lawyer who loves cooking. I was born in Vietnam but have spent most of my life in the Czech Republic. Food has been part of my life since childhood and taught me that cooking is about so much more than just taste.",
     paragraph2:
-      "This website is built component-first, mobile-first, with mock data — ready to be connected to a CMS without major refactoring.",
+      "Cooking teaches me patience, humility and the joy of small things. It's a game and a meditation, childlike wonder and grown-up love. I seek balance in it – between Asia and Europe, tradition and novelty, between sweet and salty.",
+    paragraph3:
+      "What fulfills me most is being able to share food with others, because that's when life truly has flavor. For me, cooking is more than a recipe – it's a way to give a piece of yourself to others.",
+    contactLabel: "Contact",
+    email: "Erik.haibazo@gmail.com",
   },
   contactPage: {
     title: "Contact",
-    description: "For collaborations, questions and media requests.",
-    writeMe: "Write me at:",
-    followNote: "Or follow HAIBAZO on Instagram and YouTube.",
+    description: "Collaborations, questions and media requests — I always reply.",
+    writeMe: "Write me directly",
+    writeMeNote: "I usually reply within 24 hours.",
+    followTitle: "Follow me on social media",
+    followNote: "New recipes, behind-the-scenes and quick tips every week.",
+    collab: "Collaborations & PR",
+    collabNote: "Product partnerships, reviews, brand deals or filming — write me at the email above and we'll figure it out.",
   },
   magazinePage: {
     title: "Magazine",
