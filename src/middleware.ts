@@ -26,6 +26,7 @@ function getLocaleFromHeaders(request: NextRequest): string {
 }
 
 function basicAuth(request: NextRequest): NextResponse | null {
+  const siteUsername = process.env.SITE_USERNAME;
   const sitePassword = process.env.SITE_PASSWORD;
   // Pokud není heslo nastaveno, ochrana je vypnutá
   if (!sitePassword) return null;
@@ -35,8 +36,10 @@ function basicAuth(request: NextRequest): NextResponse | null {
     const encoded = authHeader.slice(6); // "Basic " = 6 znaků
     const decoded = atob(encoded); // atob funguje v Edge Runtime
     const colonIndex = decoded.indexOf(":");
+    const username = decoded.slice(0, colonIndex);
     const password = decoded.slice(colonIndex + 1);
-    if (password === sitePassword) return null; // OK
+    const usernameMatches = siteUsername ? username === siteUsername : true;
+    if (usernameMatches && password === sitePassword) return null; // OK
   }
 
   return new NextResponse("Pristup odepren", {
@@ -62,6 +65,7 @@ export function middleware(request: NextRequest) {
   }
 
   // Basic Auth ochrana (aktivní pokud je nastaven SITE_PASSWORD v env)
+  // Pokud je navíc nastaven SITE_USERNAME, vyžaduje se i správné username.
   const authResponse = basicAuth(request);
   if (authResponse) return authResponse;
 
