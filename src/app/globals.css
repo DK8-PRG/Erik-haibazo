@@ -23,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior-y: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -43,6 +44,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-body), system-ui, sans-serif;
   line-height: 1.65;
+  overscroll-behavior-y: none;
 }
 
 h1,

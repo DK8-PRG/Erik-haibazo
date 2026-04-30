@@ -65,7 +65,8 @@ export function IntroHero({ dict, data }: IntroHeroProps) {
           fill
           priority
           sizes="100vw"
-          quality={90}
+          quality={100}
+          unoptimized
           className="object-cover object-center"
         />
 
@@ -73,7 +74,7 @@ export function IntroHero({ dict, data }: IntroHeroProps) {
         <div className="absolute inset-0">
           <div className="relative mx-auto h-full w-full max-w-7xl px-6 sm:px-8 md:px-10 lg:px-14">
             {/* Text vpravo — kam Erik ukazuje prstem. */}
-            <div className="absolute right-0 top-[35%] w-[52%] max-w-md sm:right-8 sm:top-[22%] sm:w-[50%] md:right-10 md:top-[26%] md:w-[45%] lg:right-14 lg:top-[28%] lg:w-[40%] lg:max-w-lg">
+            <div className="absolute right-2 top-[33%]  w-[48%] max-w-md sm:right-8 sm:top-[30%] sm:w-[40%] md:right-10 md:top-[30%] md:w-[40%] lg:right-14 lg:top-[30%] lg:w-[40%] lg:max-w-lg">
               {/* NADPIS. */}
               <h1 className="text-3xl font-extrabold uppercase leading-[0.95] tracking-tight text-night sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                 {name.split(" ").map((word, i) => (
