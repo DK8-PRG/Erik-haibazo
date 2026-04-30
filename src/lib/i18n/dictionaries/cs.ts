@@ -83,6 +83,9 @@ const cs = {
     contact: "Kontakt",
     copyright: "Všechna práva vyhrazena.",
     heading: "ZŮSTAŇME V KONTAKTU",
+    collabNote: "Spolupráce, natáčení, partnerství a ochutnávky.",
+    webCreditLabel: "Web vytvořil Kim Hoang Duong",
+    webCreditCta: "Chcete podobný web? Napište mi na",
   },
   aboutPage: {
     title: "O mně",

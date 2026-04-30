@@ -73,7 +73,7 @@ export function IntroHero({ dict }: IntroHeroProps) {
   return (
     <section
       id="hero"
-      className="relative isolate scroll-mt-16 bg-transparent text-night"
+      className="relative isolate z-10 scroll-mt-16 bg-transparent text-night"
     >
       <div className="relative h-[110svh] min-h-[680px] w-full">
         {/* Foto Erika — full-bleed pozadí. */}
@@ -145,8 +145,8 @@ export function IntroHero({ dict }: IntroHeroProps) {
         </div>
       </div>
 
-      {/* Maskot — mimo h-[100svh] div, takže může přesahovat dolů. */}
-      <div className="pointer-events-none absolute bottom-4 right-2 z-40 translate-y-1/2 sm:right-8 md:right-10 lg:right-14">
+      {/* Maskot — sedí na hraně sekce Nejnovější video. */}
+      <div className="pointer-events-none absolute bottom-2 left-[75%] z-40 -translate-x-1/2 translate-y-[34%]">
         <Mascot
           alt="HAIBAZO maskot"
           className="block h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32"

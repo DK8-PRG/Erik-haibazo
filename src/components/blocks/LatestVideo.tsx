@@ -25,12 +25,11 @@ const FALLBACK_TILES: VideoTileData[] = [
     caption: "TOHLE ZKUS!",
   },
   {
-    platform: "instagram",
-    url: "https://www.instagram.com/erik.haibazo/reel/DXMnTHejOCm/",
-    // Instagram nedovoluje hot-link náhledů, použijeme lokální foto jako placeholder.
-    thumbnail: "/images/new/DSC00927.jpg",
-    thumbnailAlt: "Instagram reel náhled",
-    caption: "INSTAGRAM REEL",
+    platform: "youtube",
+    url: "https://www.youtube.com/shorts/lpG_LQHhSMw",
+    thumbnail: "https://img.youtube.com/vi/lpG_LQHhSMw/maxresdefault.jpg",
+    thumbnailAlt: "Další YouTube short",
+    caption: "NOVÝ SHORT",
   },
 ];
 
@@ -56,7 +55,7 @@ export function LatestVideo({ data, dict }: LatestVideoProps) {
   return (
     <section
       id="videa"
-      className="relative scroll-mt-16 bg-night py-16 text-white sm:py-20 md:py-24"
+      className="relative z-0 scroll-mt-16 bg-night pb-16 pt-14 text-white sm:pb-20 sm:pt-[4.5rem] md:pb-24 md:pt-24"
     >
       <Container>
         <header className="mb-8 flex items-end justify-between gap-6 sm:mb-10">

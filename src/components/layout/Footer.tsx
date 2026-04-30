@@ -82,6 +82,7 @@ const SocialIcon = ({ platform }: { platform: string }) => {
 export function Footer({ dict, lang: _lang, data }: FooterProps) {
   const heading = data?.footerHeading ?? dict.heading;
   const email = data?.footerEmail ?? "erik.haibazo@gmail.com";
+  const developerEmail = "duongk.hoang@gmail.com";
   const socials =
     data?.footerSocials && data.footerSocials.length > 0
       ? data.footerSocials
@@ -111,6 +112,10 @@ export function Footer({ dict, lang: _lang, data }: FooterProps) {
             {email}
           </Link>
 
+          <p className="max-w-xl text-sm leading-relaxed text-white/65 sm:text-base">
+            {dict.collabNote}
+          </p>
+
           {/* Sociály */}
           <ul className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             {socials.map((s) => (
@@ -130,8 +135,19 @@ export function Footer({ dict, lang: _lang, data }: FooterProps) {
         </div>
 
         {/* Spodní pruh — copyright */}
-        <div className="border-t border-white/10 py-6 text-center text-xs text-white/50 sm:text-sm">
-          {copyright}
+        <div className="border-t border-white/10 py-6 text-center sm:text-sm">
+          <p className="text-sm font-medium text-white/80 sm:text-base">
+            {copyright}
+          </p>
+          <p className="mt-2 text-[11px] text-white/45 sm:text-xs">
+            {dict.webCreditLabel} • {dict.webCreditCta}{" "}
+            <Link
+              href={`mailto:${developerEmail}`}
+              className="text-white/60 transition hover:text-gold"
+            >
+              {developerEmail}
+            </Link>
+          </p>
         </div>
       </Container>
     </footer>

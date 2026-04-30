@@ -86,6 +86,9 @@ const en: Dictionary = {
     contact: "Contact",
     copyright: "All rights reserved.",
     heading: "LET'S STAY IN TOUCH",
+    collabNote: "Collaborations, filming, partnerships and tastings.",
+    webCreditLabel: "Website by Kim Hoang Duong",
+    webCreditCta: "Want a similar website? Write to me at",
   },
   aboutPage: {
     title: "About",

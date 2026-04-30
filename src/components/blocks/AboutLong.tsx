@@ -93,7 +93,7 @@ export function AboutLong({ data, dict }: AboutLongProps) {
       <Container>
         <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12 lg:gap-16">
           {/* ─── Portrét — celý Erik (object-contain, zarovnáno dolů) ── */}
-          <div className="relative mx-auto aspect-[3/4] w-full max-w-md md:max-w-none md:h-[640px] lg:h-[720px]">
+          <div className="order-2 relative mx-auto aspect-[3/4] w-full max-w-md md:order-1 md:max-w-none md:h-[640px] lg:h-[720px]">
             <Image
               src={portrait ?? "/images/new/DSC00927.jpg"}
               alt={portraitAlt}
@@ -105,7 +105,7 @@ export function AboutLong({ data, dict }: AboutLongProps) {
           </div>
 
           {/* ─── Text + email ───────────────────────────────────────── */}
-          <div className="max-w-prose">
+          <div className="order-1 max-w-prose md:order-2">
             <h2 className="text-2xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-3xl md:text-4xl lg:text-[2.75rem]">
               {heading}
             </h2>

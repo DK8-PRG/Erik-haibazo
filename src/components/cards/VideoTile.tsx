@@ -60,7 +60,7 @@ const PlatformIcon = ({
 // VideoTile — klikatelná karta s náhledem, otevírá externí URL v novém tabu.
 // =============================================================================
 export function VideoTile({ tile, featured = false }: VideoTileProps) {
-  const aspect = featured ? "aspect-video" : "aspect-[9/16] sm:aspect-video";
+  const aspect = featured ? "aspect-video" : "aspect-[4/5] sm:aspect-video";
 
   return (
     <a
@@ -75,7 +75,7 @@ export function VideoTile({ tile, featured = false }: VideoTileProps) {
           src={tile.thumbnail}
           alt={tile.thumbnailAlt ?? tile.caption ?? "Video náhled"}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 92vw, 50vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
