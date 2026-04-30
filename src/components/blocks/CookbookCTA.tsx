@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { CookbookFeatureIcon } from "@/components/ui/CookbookFeatureIcon";
 import { NewsletterForm } from "@/components/blocks/NewsletterForm";
 import type { HomepageCookbookData } from "@/lib/sanity/queries";
 import type { Dictionary } from "@/lib/i18n/dictionaries/cs";
@@ -14,10 +15,10 @@ type CookbookCTAProps = {
 // FALLBACK feature body (4×) — když v Sanity ještě nejsou.
 // =============================================================================
 const FALLBACK_FEATURES = [
-  { icon: "🥢", label: "Autentické recepty" },
-  { icon: "📖", label: "Krok za krokem" },
-  { icon: "🇻🇳", label: "Z Vietnamu do tvé kuchyně" },
-  { icon: "💛", label: "Limitovaná edice" },
+  { icon: "book", label: "Přes 70 receptů\nz vietnamské kuchyně" },
+  { icon: "clock", label: "Jednoduché postupy\nkrok za krokem" },
+  { icon: "bowl", label: "Běžně dostupné\nsuroviny" },
+  { icon: "heart-fork", label: "Recepty ověřené\nv mé kuchyni" },
 ];
 
 // Rozdělí nadpis tak, aby druhá část byla na vlastním řádku.
@@ -138,19 +139,15 @@ export function CookbookCTA({ data, dict, locale }: CookbookCTAProps) {
               <p className="mt-3 text-xs text-white/50">{dict.privacy}</p>
             </div>
 
-            {/* Features grid 2×2 mobil / 4× řada ≥md */}
-            <ul className="mt-8 grid grid-cols-2 gap-4 sm:mt-10 sm:gap-5 md:grid-cols-4">
+            {/* Features grid 2×2 mobil / 4× řada ≥md — gold ikony, centrované */}
+            <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:mt-12 md:grid-cols-4 md:gap-x-6">
               {features.map((f, idx) => (
                 <li
                   key={`${f.label}-${idx}`}
-                  className="flex flex-col items-start gap-2 rounded-xl bg-white/5 p-4 ring-1 ring-white/10"
+                  className="flex flex-col items-center gap-3 text-center"
                 >
-                  {f.icon ? (
-                    <span className="text-2xl" aria-hidden>
-                      {f.icon}
-                    </span>
-                  ) : null}
-                  <span className="text-xs font-semibold uppercase tracking-wide text-white/90 sm:text-sm">
+                  <CookbookFeatureIcon name={f.icon} className="text-gold" />
+                  <span className="whitespace-pre-line text-xs leading-snug text-white/85 sm:text-sm">
                     {f.label}
                   </span>
                 </li>

@@ -334,19 +334,35 @@ async function run() {
     cookbookFeatures: [
       {
         _key: k(),
-        icon: "🥢",
-        label: ls("Autentické recepty", "Authentic recipes"),
-      },
-      { _key: k(), icon: "📖", label: ls("Krok za krokem", "Step by step") },
-      {
-        _key: k(),
-        icon: "🇻🇳",
-        label: ls("Z Vietnamu do tvé kuchyně", "From Vietnam to your kitchen"),
+        icon: "book",
+        label: ls(
+          "Přes 70 receptů\nz vietnamské kuchyně",
+          "Over 70 recipes\nfrom Vietnamese cuisine",
+        ),
       },
       {
         _key: k(),
-        icon: "💛",
-        label: ls("Limitovaná edice", "Limited edition"),
+        icon: "clock",
+        label: ls(
+          "Jednoduché postupy\nkrok za krokem",
+          "Simple step-by-step\ninstructions",
+        ),
+      },
+      {
+        _key: k(),
+        icon: "bowl",
+        label: ls(
+          "Běžně dostupné\nsuroviny",
+          "Easily available\ningredients",
+        ),
+      },
+      {
+        _key: k(),
+        icon: "heart-fork",
+        label: ls(
+          "Recepty ověřené\nv mé kuchyni",
+          "Recipes tested\nin my own kitchen",
+        ),
       },
     ],
 

@@ -141,9 +141,10 @@ export const homepage = defineType({
           fields: [
             defineField({
               name: "icon",
-              title: "Ikona (emoji nebo lucide název)",
+              title: "Ikona",
               type: "string",
-              description: 'např. "🔥" nebo "chef-hat"',
+              description:
+                'Název ikony: "book", "clock", "bowl", "heart-fork". Případně emoji jako fallback.',
             }),
             defineField({
               name: "label",
