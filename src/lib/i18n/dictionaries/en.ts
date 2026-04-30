@@ -2,11 +2,11 @@ import type { Dictionary } from "./cs";
 
 const en: Dictionary = {
   nav: {
-    home: "Home",
-    recipes: "Recipes",
-    magazine: "Magazine",
-    about: "About",
-    contact: "Contact",
+    home: "HOME",
+    recipes: "VIDEOS",
+    magazine: "COOKBOOK",
+    about: "ABOUT",
+    contact: "CONTACT",
     admin: "Admin",
     menu: "Menu",
     closeMenu: "Close menu",
@@ -17,6 +17,36 @@ const en: Dictionary = {
     description:
       "Simple steps, bold flavors and Asian street food inspiration for every day.",
     cta: "Explore recipes",
+  },
+  intro: {
+    kicker: "Erik Haibazo · Food creator",
+    name: "Erik Haibazo",
+    lead: "I'll teach you to cook Vietnamese food that tastes better than at the restaurant.",
+    collabLabel: "COLLAB",
+    email: "erik.haibazo@gmail.com",
+    scrollHint: "Scroll down",
+    socialsLabel: "Follow me",
+  },
+  videosSection: {
+    heading: "LATEST VIDEO",
+    empty: "Videos coming soon — follow me on social media.",
+  },
+  cookbookSection: {
+    heading: "MY COOKBOOK (COMING SOON)",
+    subheading:
+      "Let Vietnamese flavors transform your kitchen. Sign up and I'll let you know the moment the cookbook drops.",
+    ctaLabel: "I WANT THE COOKBOOK",
+    placeholder: "Your e-mail",
+    privacy:
+      "By submitting you agree to receive updates. You can unsubscribe anytime.",
+    success: "Thanks! You're on the list.",
+    already: "This e-mail is already on the list.",
+    invalid: "That doesn't look like a valid e-mail.",
+    error: "Something went wrong, please try again.",
+  },
+  aboutLongSection: {
+    heading: "WHO AM I?",
+    contactLabel: "Contact",
   },
   magazineSection: {
     title: "HAIBAZO MAGAZINE",
@@ -55,6 +85,7 @@ const en: Dictionary = {
     description: "Recipes, videos and kitchen inspiration every week.",
     contact: "Contact",
     copyright: "All rights reserved.",
+    heading: "LET'S STAY IN TOUCH",
   },
   aboutPage: {
     title: "About",
@@ -71,13 +102,15 @@ const en: Dictionary = {
   },
   contactPage: {
     title: "Contact",
-    description: "Collaborations, questions and media requests — I always reply.",
+    description:
+      "Collaborations, questions and media requests — I always reply.",
     writeMe: "Write me directly",
     writeMeNote: "I usually reply within 24 hours.",
     followTitle: "Follow me on social media",
     followNote: "New recipes, behind-the-scenes and quick tips every week.",
     collab: "Collaborations & PR",
-    collabNote: "Product partnerships, reviews, brand deals or filming — write me at the email above and we'll figure it out.",
+    collabNote:
+      "Product partnerships, reviews, brand deals or filming — write me at the email above and we'll figure it out.",
   },
   magazinePage: {
     title: "Magazine",

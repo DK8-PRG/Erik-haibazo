@@ -5,6 +5,7 @@ import { aboutPage } from "./documents/aboutPage";
 import { category } from "./documents/category";
 import { recipe } from "./documents/recipe";
 import { article } from "./documents/article";
+import { newsletterSubscriber } from "./documents/newsletterSubscriber";
 import { blockContent } from "./objects/blockContent";
 import { imageWithAlt } from "./objects/imageWithAlt";
 import { seo } from "./objects/seo";
@@ -23,4 +24,5 @@ export const schemaTypes = [
   category,
   recipe,
   article,
+  newsletterSubscriber,
 ];

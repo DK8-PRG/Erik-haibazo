@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { getDictionary } from "@/lib/i18n/getDictionary";
+import { getHomepageFooter } from "@/lib/sanity/queries";
 import type { Locale } from "@/lib/i18n/config";
 
 export default async function SiteLayout({
@@ -13,13 +14,15 @@ export default async function SiteLayout({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
+  const footerData = await getHomepageFooter();
 
+  // One-pager: anchor scrolls (mimo `home`, který vede na samotnou homepage URL)
   const navLinks = [
-    { href: `/${lang}`, label: dict.nav.home },
-    { href: `/${lang}/recipes`, label: dict.nav.recipes },
-    { href: `/${lang}/magazine`, label: dict.nav.magazine },
-    { href: `/${lang}/about`, label: dict.nav.about },
-    { href: `/${lang}/contact`, label: dict.nav.contact },
+    { href: `/${lang}#hero`, label: dict.nav.home },
+    { href: `/${lang}#videa`, label: dict.nav.recipes },
+    { href: `/${lang}#kucharka`, label: dict.nav.magazine },
+    { href: `/${lang}#o-mne`, label: dict.nav.about },
+    { href: `/${lang}#kontakt`, label: dict.nav.contact },
   ];
 
   return (
@@ -31,7 +34,7 @@ export default async function SiteLayout({
         lang={lang}
       />
       <main>{children}</main>
-      <Footer dict={dict.footer} lang={lang} />
+      <Footer dict={dict.footer} lang={lang} data={footerData} />
     </>
   );
 }

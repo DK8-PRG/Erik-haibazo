@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Mascot } from "@/components/ui/Mascot";
 import type { Dictionary } from "@/lib/i18n/dictionaries/cs";
 
 type HeroProps = {
@@ -10,7 +11,7 @@ type HeroProps = {
 
 export function Hero({ dict, lang }: HeroProps) {
   return (
-    <section className="relative">
+    <section id="hero" className="relative">
       <div className="relative h-[68vh] min-h-[460px] w-full overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
         <Image
           src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1800&q=80"
@@ -20,6 +21,15 @@ export function Hero({ dict, lang }: HeroProps) {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white/88 via-white/28 to-transparent" />
+
+        {/* Maskot — pravý horní roh, mobile-first scaling */}
+        <div className="absolute right-3 top-4 sm:right-6 sm:top-8 lg:right-12 lg:top-10">
+          <Mascot
+            alt="HAIBAZO maskot"
+            className="h-24 w-24 sm:h-36 sm:w-36 lg:h-52 lg:w-52"
+          />
+        </div>
+
         <Container className="absolute inset-x-0 bottom-8 sm:bottom-10">
           <div className="max-w-xl rounded-2xl bg-white/90 p-5 shadow-sm backdrop-blur-sm sm:p-7">
             <p className="text-xs uppercase tracking-[0.18em] text-neutral-600">

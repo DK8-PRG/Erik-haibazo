@@ -1,13 +1,14 @@
-import { AboutFollowSection } from "@/components/blocks/AboutFollowSection";
-import { Hero } from "@/components/blocks/Hero";
-import { MagazineFeaturedSplit } from "@/components/blocks/MagazineFeaturedSplit";
-import { PartnerLogosRow } from "@/components/blocks/PartnerLogosRow";
-import { RecipeCard } from "@/components/cards/RecipeCard";
-import { Button } from "@/components/ui/Button";
-import { Section } from "@/components/ui/Section";
-import { TagPills } from "@/components/ui/TagPills";
-import { getArticles } from "@/lib/sanity/queries";
-import { getRecipes } from "@/lib/sanity/queries";
+import { AboutLong } from "@/components/blocks/AboutLong";
+import { CookbookCTA } from "@/components/blocks/CookbookCTA";
+import { IntroHero } from "@/components/blocks/IntroHero";
+import { LatestVideo } from "@/components/blocks/LatestVideo";
+import { PartnerMarquee } from "@/components/blocks/PartnerMarquee";
+import { PortraitDivider } from "@/components/blocks/PortraitDivider";
+import {
+  getHomepageVideos,
+  getHomepageCookbook,
+  getHomepageAboutLong,
+} from "@/lib/sanity/queries";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -19,51 +20,31 @@ export default async function HomePage({
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
 
-  const [articles, recipes] = await Promise.all([getArticles(), getRecipes()]);
-
-  const featuredArticle = articles[0];
-  const magazineItems = articles.slice(1);
-  const recipePreview = recipes.slice(0, 6);
+  // Magazine + Recipes jsou prozatím skryté (mimo MVP one-pageru). URL fungují,
+  // ale na homepage se nezobrazují — viz _docs/09-redesign-proposal.md §10.
+  const [videos, cookbook, aboutLong] = await Promise.all([
+    getHomepageVideos(),
+    getHomepageCookbook(),
+    getHomepageAboutLong(),
+  ]);
 
   return (
     <>
-      <Hero dict={dict.hero} lang={lang} />
-      <PartnerLogosRow dict={dict.partners} />
+      <IntroHero dict={dict.intro} />
 
-      <Section
-        className="bg-[#F3F3F3]"
-        title={dict.magazineSection.title}
-        description={dict.magazineSection.description}
-      >
-        <MagazineFeaturedSplit
-          featured={featuredArticle}
-          items={magazineItems}
-          featuredLabel={dict.magazineSection.featured}
-          lang={lang}
-        />
-      </Section>
+      <LatestVideo data={videos} dict={dict.videosSection} />
 
-      <Section
-        className="bg-white"
-        title={dict.recipesSection.title}
-        description={dict.recipesSection.description}
-      >
-        <div className="mb-6">
-          <TagPills />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {recipePreview.map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} lang={lang} />
-          ))}
-        </div>
-        <div className="mt-8">
-          <Button href={`/${lang}/recipes`}>
-            {dict.recipesSection.showAll}
-          </Button>
-        </div>
-      </Section>
+      <CookbookCTA data={cookbook} dict={dict.cookbookSection} locale={lang} />
 
-      <AboutFollowSection dict={dict.aboutFollow} lang={lang} />
+      <PortraitDivider
+        src={aboutLong?.portraitDivider}
+        alt={aboutLong?.portraitDividerAlt}
+      />
+
+      <AboutLong data={aboutLong} dict={dict.aboutLongSection} />
+
+      {/* As Featured In — partneři poslední sekce před footerem */}
+      <PartnerMarquee dict={dict.partners} />
     </>
   );
 }

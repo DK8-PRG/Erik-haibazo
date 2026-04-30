@@ -1,10 +1,10 @@
 const cs = {
   nav: {
-    home: "Home",
-    recipes: "Recepty",
-    magazine: "Magazín",
-    about: "O mně",
-    contact: "Kontakt",
+    home: "DOMŮ",
+    recipes: "VIDEA",
+    magazine: "KUCHAŘKA",
+    about: "O MNĚ",
+    contact: "KONTAKT",
     admin: "Admin",
     menu: "Menu",
     closeMenu: "Zavřít menu",
@@ -15,6 +15,36 @@ const cs = {
     description:
       "Jednoduché postupy, výrazné chutě a inspirace z asijského street foodu pro každý den.",
     cta: "Prozkoumat recepty",
+  },
+  intro: {
+    kicker: "Erik Haibazo · Food creator",
+    name: "Erik Haibazo",
+    lead: "Naučím tě vařit vietnamské jídlo, které chutná líp než v restauraci.",
+    collabLabel: "SPOLUPRÁCE",
+    email: "erik.haibazo@gmail.com",
+    scrollHint: "Posuň níž",
+    socialsLabel: "Sleduj mě",
+  },
+  videosSection: {
+    heading: "NEJNOVĚJŠÍ VIDEO",
+    empty: "Vídea brzy přidám — sleduj mě na sociálních sítích.",
+  },
+  cookbookSection: {
+    heading: "MOJE KUCHAŘKA (JIŽ BRZY VENKU)",
+    subheading:
+      "Nech štáb vietnamských chutí proměnit tvoji kuchyni. Přihlaš se a budu ti psát, jakmile bude kuchařka venku.",
+    ctaLabel: "CHCI KUCHAŘKU",
+    placeholder: "Tvůj e-mail",
+    privacy:
+      "Ode sláním souhlasíš s odběrem novinek. Odhlásit se můžeš kdykoliv.",
+    success: "Děkuju! Máš to v seznamu.",
+    already: "Tenhle e-mail už v seznamu mám.",
+    invalid: "Nezdá se mi to jako platný e-mail.",
+    error: "Něco se zvrtlo, zkus to prosím znovu.",
+  },
+  aboutLongSection: {
+    heading: "KDO JSEM?",
+    contactLabel: "Kontakt",
   },
   magazineSection: {
     title: "HAIBAZO MAGAZÍN",
@@ -52,6 +82,7 @@ const cs = {
     description: "Recepty, videa a inspirace z kuchyně každý týden.",
     contact: "Kontakt",
     copyright: "Všechna práva vyhrazena.",
+    heading: "ZŮSTAŇME V KONTAKTU",
   },
   aboutPage: {
     title: "O mně",
@@ -74,7 +105,8 @@ const cs = {
     followTitle: "Sleduj mě na sociálních sítích",
     followNote: "Nové recepty, zákulisí tvorby a kratší tipy každý týden.",
     collab: "Spolupráce & PR",
-    collabNote: "Produktové spolupráce, recenze, brand deals nebo natáčení — napiš mi na email výše a domluvíme se.",
+    collabNote:
+      "Produktové spolupráce, recenze, brand deals nebo natáčení — napiš mi na email výše a domluvíme se.",
   },
   magazinePage: {
     title: "Magazín",
