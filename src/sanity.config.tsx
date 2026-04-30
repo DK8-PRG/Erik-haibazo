@@ -13,16 +13,25 @@ import {
   TagIcon,
   CogIcon,
   UlistIcon,
+  EnvelopeIcon,
 } from "@sanity/icons";
 import { schemaTypes } from "@/sanity/index";
 import { projectId, dataset } from "@/lib/sanity/env";
 
 const HaibazoLogo = () => (
-  <img
-    src="/images/no-bg/erik-logo-no-bg.png"
-    alt="Haibazo"
-    style={{ height: "28px", width: "auto", display: "block" }}
-  />
+  <span
+    style={{
+      fontFamily:
+        "'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+      fontWeight: 800,
+      fontSize: "16px",
+      letterSpacing: "0.18em",
+      color: "#0B0B0D",
+      textTransform: "uppercase",
+    }}
+  >
+    HAIBAZO
+  </span>
 );
 
 // Singletons — dokumenty, které existují vždy jen v jedné kopii
@@ -34,7 +43,14 @@ const singletonTypes = new Set([
 ]);
 
 // Skrýt typy, které nejsou přímé dokumenty (objekty)
-const hiddenTypes = new Set(["blockContent", "imageWithAlt", "seo"]);
+const hiddenTypes = new Set([
+  "blockContent",
+  "imageWithAlt",
+  "seo",
+  "localeString",
+  "localeText",
+  "localeBlockContent",
+]);
 
 function structure(S: StructureBuilder) {
   return S.list()
@@ -69,6 +85,16 @@ function structure(S: StructureBuilder) {
         .title("Články")
         .icon(BookIcon)
         .child(S.documentTypeList("article").title("Články")),
+      S.divider(),
+      // Newsletter — odběratelé
+      S.listItem()
+        .title("Newsletter — odběratelé")
+        .icon(EnvelopeIcon)
+        .child(
+          S.documentTypeList("newsletterSubscriber")
+            .title("Newsletter — odběratelé")
+            .defaultOrdering([{ field: "subscribedAt", direction: "desc" }]),
+        ),
       S.divider(),
       // Nastavení (dole)
       S.listItem()

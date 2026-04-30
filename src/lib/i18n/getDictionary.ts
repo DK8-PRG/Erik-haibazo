@@ -1,4 +1,4 @@
-import type { Locale } from "./config";
+import { defaultLocale, type Locale } from "./config";
 import type { Dictionary } from "./dictionaries/cs";
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
@@ -7,5 +7,6 @@ const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
 };
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  return dictionaries[locale]();
+  const loader = dictionaries[locale] ?? dictionaries[defaultLocale];
+  return loader();
 }

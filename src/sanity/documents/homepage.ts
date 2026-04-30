@@ -15,23 +15,19 @@ export const homepage = defineType({
     defineField({
       name: "heroTitle",
       title: "Hero titulek",
-      type: "string",
-      description: "Hlavní nadpis v hero sekci",
-      validation: (rule) => rule.required(),
-      initialValue: "HAIBAZO: moderní recepty bez chaosu",
+      type: "localeString",
+      description: "Hlavní nadpis v hero sekci (CS / EN)",
     }),
     defineField({
       name: "heroSubtitle",
       title: "Hero podtitulek",
-      type: "text",
-      rows: 2,
-      description: "Krátký popis pod nadpisem",
+      type: "localeText",
+      description: "Krátký popis pod nadpisem (CS / EN)",
     }),
     defineField({
       name: "heroCTALabel",
       title: "CTA tlačítko — text",
-      type: "string",
-      initialValue: "Prozkoumat recepty",
+      type: "localeString",
     }),
     defineField({
       name: "heroCTAHref",
@@ -45,8 +41,7 @@ export const homepage = defineType({
     defineField({
       name: "videosHeading",
       title: "Videa — nadpis",
-      type: "string",
-      initialValue: "NEJNOVĚJŠÍ VIDEO",
+      type: "localeString",
     }),
     defineField({
       name: "videoTiles",
@@ -90,7 +85,7 @@ export const homepage = defineType({
             defineField({
               name: "caption",
               title: "Popisek (volitelný)",
-              type: "string",
+              type: "localeString",
               description: 'např. "TOHLE ZKUS!" nebo "SLADKOKYSELÁ OMÁČKA"',
             }),
           ],
@@ -116,14 +111,12 @@ export const homepage = defineType({
     defineField({
       name: "cookbookHeading",
       title: "Kuchařka — nadpis",
-      type: "string",
-      initialValue: "MOJE KUCHAŘKA (JIŽ BRZY VENKU)",
+      type: "localeString",
     }),
     defineField({
       name: "cookbookSubheading",
       title: "Kuchařka — podtitulek",
-      type: "text",
-      rows: 3,
+      type: "localeText",
       description:
         "Krátký popis pod nadpisem (proč se přihlásit, co uživatel dostane).",
     }),
@@ -135,8 +128,7 @@ export const homepage = defineType({
     defineField({
       name: "cookbookCTALabel",
       title: "Tlačítko — text",
-      type: "string",
-      initialValue: "CHCI KUCHAŘKU",
+      type: "localeString",
     }),
     defineField({
       name: "cookbookFeatures",
@@ -156,8 +148,7 @@ export const homepage = defineType({
             defineField({
               name: "label",
               title: "Text",
-              type: "string",
-              validation: (rule) => rule.required(),
+              type: "localeString",
             }),
           ],
           preview: {
@@ -181,8 +172,7 @@ export const homepage = defineType({
     defineField({
       name: "aboutLongHeading",
       title: "O mně — nadpis",
-      type: "string",
-      initialValue: "KDO JSEM?",
+      type: "localeString",
     }),
     defineField({
       name: "aboutLongPortrait",
@@ -191,8 +181,8 @@ export const homepage = defineType({
     }),
     defineField({
       name: "aboutLongBody",
-      title: "O mně — text (rich text)",
-      type: "blockContent",
+      title: "O mně — text (rich text, CS / EN)",
+      type: "localeBlockContent",
     }),
     defineField({
       name: "aboutLongEmail",
@@ -205,8 +195,7 @@ export const homepage = defineType({
     defineField({
       name: "footerHeading",
       title: "Footer — nadpis (sekce #kontakt)",
-      type: "string",
-      initialValue: "ZŮSTAŇME V KONTAKTU",
+      type: "localeString",
     }),
     defineField({
       name: "footerEmail",
@@ -254,8 +243,45 @@ export const homepage = defineType({
     defineField({
       name: "footerCopyright",
       title: "Footer — copyright text",
-      type: "string",
-      initialValue: "© 2026 Erik Haibazo",
+      type: "localeString",
+    }),
+
+    // ─── Partneři / "As Featured In" marquee ────────────────────────────────
+    defineField({
+      name: "partners",
+      title: "Partneři (As Featured In)",
+      type: "array",
+      description:
+        "Loga partnerů zobrazená v rolující se marquee sekci nad footerem. " +
+        "Pokud je seznam prázdný, sekce zobrazí přednastavené fallback partnery.",
+      of: [
+        {
+          type: "object",
+          name: "partner",
+          fields: [
+            defineField({
+              name: "name",
+              title: "Název partnera",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "logo",
+              title: "Logo",
+              type: "imageWithAlt",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "Odkaz (volitelný)",
+              type: "url",
+            }),
+          ],
+          preview: {
+            select: { title: "name", media: "logo" },
+          },
+        },
+      ],
     }),
 
     // ─── Featured obsah ───────────────────────────────────────────────────────

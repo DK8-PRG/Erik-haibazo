@@ -4,14 +4,24 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { MobileMenuSheet } from "@/components/layout/MobileMenuSheet";
+import { NavLanguageDropdown } from "@/components/layout/NavLanguageDropdown";
 
 type NavLink = { href: string; label: string };
+
+type LanguageLabels = {
+  label: string;
+  cs: string;
+  en: string;
+  csShort: string;
+  enShort: string;
+};
 
 type NavbarProps = {
   links: NavLink[];
   menuLabel: string;
   closeMenuLabel: string;
   lang: string;
+  languageLabels: LanguageLabels;
 };
 
 /**
@@ -26,6 +36,7 @@ export function Navbar({
   menuLabel,
   closeMenuLabel,
   lang,
+  languageLabels,
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -100,6 +111,13 @@ export function Navbar({
                 </Link>
               );
             })}
+
+            {/* Language dropdown — nenápadně jako součást nav, vedle Kontaktu */}
+            <NavLanguageDropdown
+              lang={lang}
+              scrolled={scrolled}
+              labels={languageLabels}
+            />
           </nav>
         </Container>
       </header>

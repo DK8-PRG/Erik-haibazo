@@ -33,6 +33,10 @@ export async function subscribeEmail(
 ): Promise<SubscribeResult> {
   if (!writeClient) return { ok: false, error: "config_missing" };
 
+  // Honeypot — pokud je vyplněno, je to bot. Tváříme se jako úspěch.
+  const honeypot = String(formData.get("website") ?? "").trim();
+  if (honeypot) return { ok: true };
+
   const email = String(formData.get("email") ?? "")
     .trim()
     .toLowerCase();

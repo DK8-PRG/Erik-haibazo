@@ -132,8 +132,11 @@ const cs = {
     siteDescription: "Moderní food magazín s recepty a články.",
   },
   languageSwitcher: {
-    cs: "CZ",
-    en: "EN",
+    label: "Jazyk",
+    cs: "Čeština",
+    en: "Angličtina",
+    csShort: "CZ",
+    enShort: "EN",
   },
 };
 

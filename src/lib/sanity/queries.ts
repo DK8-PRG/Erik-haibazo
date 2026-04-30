@@ -202,13 +202,57 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   );
 }
 
+// ─── Homepage — hero (#hero sekce) ───────────────────────────────────────────
+const homepageHeroQuery = `*[_type == "homepage"][0]{
+  "heroTitle": coalesce(heroTitle[$lang], heroTitle.cs),
+  "heroSubtitle": coalesce(heroSubtitle[$lang], heroSubtitle.cs),
+  "heroImage": heroImage.asset->url,
+  "heroImageAlt": heroImage.alt,
+  "heroCTALabel": coalesce(heroCTALabel[$lang], heroCTALabel.cs),
+  heroCTAHref,
+  footerEmail,
+  footerSocials[]{ platform, url }
+}`;
+
+export type HomepageHeroSocial = {
+  platform: VideoPlatform;
+  url: string;
+};
+
+export type HomepageHeroData = {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  heroCTALabel?: string;
+  heroCTAHref?: string;
+  footerEmail?: string;
+  footerSocials?: HomepageHeroSocial[];
+} | null;
+
+export async function getHomepageHero(
+  lang: string = "cs",
+): Promise<HomepageHeroData> {
+  if (!projectId || !dataset) return null;
+  return client.fetch(
+    homepageHeroQuery,
+    { lang },
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 60 }
+          : { revalidate: 0 },
+    },
+  );
+}
+
 // ─── Homepage — videa (#videa sekce) ─────────────────────────────────────────
 const homepageVideosQuery = `*[_type == "homepage"][0]{
-  videosHeading,
+  "videosHeading": coalesce(videosHeading[$lang], videosHeading.cs),
   "tiles": videoTiles[]{
     platform,
     url,
-    caption,
+    "caption": coalesce(caption[$lang], caption.cs),
     "thumbnail": thumbnail.asset->url,
     "thumbnailAlt": thumbnail.alt
   }
@@ -229,11 +273,13 @@ export type HomepageVideosData = {
   tiles?: VideoTile[];
 } | null;
 
-export async function getHomepageVideos(): Promise<HomepageVideosData> {
+export async function getHomepageVideos(
+  lang: string = "cs",
+): Promise<HomepageVideosData> {
   if (!projectId || !dataset) return null;
   return client.fetch(
     homepageVideosQuery,
-    {},
+    { lang },
     {
       next:
         process.env.NODE_ENV === "production"
@@ -245,12 +291,15 @@ export async function getHomepageVideos(): Promise<HomepageVideosData> {
 
 // ─── Homepage — kuchařka (#kucharka sekce) ───────────────────────────────────
 const homepageCookbookQuery = `*[_type == "homepage"][0]{
-  cookbookHeading,
-  cookbookSubheading,
+  "cookbookHeading": coalesce(cookbookHeading[$lang], cookbookHeading.cs),
+  "cookbookSubheading": coalesce(cookbookSubheading[$lang], cookbookSubheading.cs),
   "cookbookMockup": cookbookMockup.asset->url,
   "cookbookMockupAlt": cookbookMockup.alt,
-  cookbookCTALabel,
-  cookbookFeatures[]{ icon, label }
+  "cookbookCTALabel": coalesce(cookbookCTALabel[$lang], cookbookCTALabel.cs),
+  "cookbookFeatures": cookbookFeatures[]{
+    icon,
+    "label": coalesce(label[$lang], label.cs)
+  }
 }`;
 
 export type CookbookFeature = {
@@ -267,11 +316,13 @@ export type HomepageCookbookData = {
   cookbookFeatures?: CookbookFeature[];
 } | null;
 
-export async function getHomepageCookbook(): Promise<HomepageCookbookData> {
+export async function getHomepageCookbook(
+  lang: string = "cs",
+): Promise<HomepageCookbookData> {
   if (!projectId || !dataset) return null;
   return client.fetch(
     homepageCookbookQuery,
-    {},
+    { lang },
     {
       next:
         process.env.NODE_ENV === "production"
@@ -285,10 +336,10 @@ export async function getHomepageCookbook(): Promise<HomepageCookbookData> {
 const homepageAboutLongQuery = `*[_type == "homepage"][0]{
   "portraitDivider": portraitDivider.asset->url,
   "portraitDividerAlt": portraitDivider.alt,
-  aboutLongHeading,
+  "aboutLongHeading": coalesce(aboutLongHeading[$lang], aboutLongHeading.cs),
   "aboutLongPortrait": aboutLongPortrait.asset->url,
   "aboutLongPortraitAlt": aboutLongPortrait.alt,
-  aboutLongBody,
+  "aboutLongBody": coalesce(aboutLongBody[$lang], aboutLongBody.cs),
   aboutLongEmail
 }`;
 
@@ -302,11 +353,13 @@ export type HomepageAboutLongData = {
   aboutLongEmail?: string;
 } | null;
 
-export async function getHomepageAboutLong(): Promise<HomepageAboutLongData> {
+export async function getHomepageAboutLong(
+  lang: string = "cs",
+): Promise<HomepageAboutLongData> {
   if (!projectId || !dataset) return null;
   return client.fetch(
     homepageAboutLongQuery,
-    {},
+    { lang },
     {
       next:
         process.env.NODE_ENV === "production"
@@ -318,9 +371,9 @@ export async function getHomepageAboutLong(): Promise<HomepageAboutLongData> {
 
 // ─── Homepage — footer / sekce #kontakt ──────────────────────────────────────
 const homepageFooterQuery = `*[_type == "homepage"][0]{
-  footerHeading,
+  "footerHeading": coalesce(footerHeading[$lang], footerHeading.cs),
   footerEmail,
-  footerCopyright,
+  "footerCopyright": coalesce(footerCopyright[$lang], footerCopyright.cs),
   footerSocials[]{ platform, url }
 }`;
 
@@ -336,15 +389,88 @@ export type HomepageFooterData = {
   footerSocials?: HomepageFooterSocial[];
 } | null;
 
-export async function getHomepageFooter(): Promise<HomepageFooterData> {
+export async function getHomepageFooter(
+  lang: string = "cs",
+): Promise<HomepageFooterData> {
   if (!projectId || !dataset) return null;
   return client.fetch(
     homepageFooterQuery,
-    {},
+    { lang },
     {
       next:
         process.env.NODE_ENV === "production"
           ? { revalidate: 60 }
+          : { revalidate: 0 },
+    },
+  );
+}
+
+// ─── Homepage — partneři ("As Featured In") ──────────────────────────────────
+const homepagePartnersQuery = `*[_type == "homepage"][0]{
+  "partners": partners[]{
+    name,
+    url,
+    "logo": logo.asset->url,
+    "logoAlt": logo.alt
+  }
+}`;
+
+export type HomepagePartner = {
+  name: string;
+  logo: string;
+  logoAlt?: string;
+  url?: string;
+};
+
+export type HomepagePartnersData = {
+  partners?: HomepagePartner[];
+} | null;
+
+export async function getHomepagePartners(): Promise<HomepagePartnersData> {
+  if (!projectId || !dataset) return null;
+  return client.fetch(
+    homepagePartnersQuery,
+    {},
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 300 }
+          : { revalidate: 0 },
+    },
+  );
+}
+
+// ─── About page (singleton — `/about` route) ─────────────────────────────────
+const aboutPageQuery = `*[_type == "aboutPage"][0]{
+  title,
+  "photo": photo.asset->url,
+  "photoAlt": photo.alt,
+  bio,
+  seo
+}`;
+
+export type AboutPageSeo = {
+  metaTitle?: string;
+  metaDescription?: string;
+};
+
+export type AboutPageData = {
+  title: string;
+  photo?: string;
+  photoAlt?: string;
+  bio?: PortableTextBlock[];
+  seo?: AboutPageSeo;
+} | null;
+
+export async function getAboutPage(): Promise<AboutPageData> {
+  if (!projectId || !dataset) return null;
+  return client.fetch(
+    aboutPageQuery,
+    {},
+    {
+      next:
+        process.env.NODE_ENV === "production"
+          ? { revalidate: 300 }
           : { revalidate: 0 },
     },
   );

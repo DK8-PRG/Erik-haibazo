@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { locales } from "@/lib/i18n/config";
 
 type NavLink = { href: string; label: string };
 
@@ -26,6 +27,19 @@ export function MobileMenuSheet({
   closeMenuLabel,
   lang,
 }: MobileMenuSheetProps) {
+  const pathname = usePathname();
+
+  function getLocalePath(targetLocale: string) {
+    const segments = pathname.split("/");
+    if (
+      segments[1] &&
+      locales.includes(segments[1] as (typeof locales)[number])
+    ) {
+      segments[1] = targetLocale;
+    }
+    return segments.join("/") || `/${targetLocale}`;
+  }
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -93,7 +107,26 @@ export function MobileMenuSheet({
         </nav>
 
         <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/10 px-6 py-4">
-          <LanguageSwitcher lang={lang} />
+          <div className="flex items-center gap-0.5 rounded-full bg-white/10 p-0.5 ring-1 ring-white/15">
+            {locales.map((locale) => {
+              const isCurrent = locale === lang;
+              return (
+                <Link
+                  key={locale}
+                  href={getLocalePath(locale)}
+                  onClick={onClose}
+                  aria-current={isCurrent ? "true" : undefined}
+                  className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] transition ${
+                    isCurrent
+                      ? "bg-gold text-night"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  {locale === "cs" ? "CZ" : "EN"}
+                </Link>
+              );
+            })}
+          </div>
           <Link
             href="/studio"
             onClick={onClose}

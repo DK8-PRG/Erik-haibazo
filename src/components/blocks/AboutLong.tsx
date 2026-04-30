@@ -99,6 +99,7 @@ export function AboutLong({ data, dict }: AboutLongProps) {
               alt={portraitAlt}
               fill
               sizes="(max-width: 768px) 90vw, 50vw"
+              quality={90}
               className="object-contain"
               priority={false}
             />

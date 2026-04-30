@@ -25,6 +25,7 @@ export function PortraitDivider({ src, alt }: PortraitDividerProps) {
           alt={alt ?? ""}
           fill
           sizes="100vw"
+          quality={90}
           className="object-cover"
         />
 

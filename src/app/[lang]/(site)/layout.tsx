@@ -14,7 +14,7 @@ export default async function SiteLayout({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
-  const footerData = await getHomepageFooter();
+  const footerData = await getHomepageFooter(lang);
 
   // One-pager: anchor scrolls (mimo `home`, který vede na samotnou homepage URL)
   const navLinks = [
@@ -32,9 +32,10 @@ export default async function SiteLayout({
         menuLabel={dict.nav.menu}
         closeMenuLabel={dict.nav.closeMenu}
         lang={lang}
+        languageLabels={dict.languageSwitcher}
       />
       <main>{children}</main>
-      <Footer dict={dict.footer} lang={lang} data={footerData} />
+      <Footer dict={dict.footer} data={footerData} />
     </>
   );
 }

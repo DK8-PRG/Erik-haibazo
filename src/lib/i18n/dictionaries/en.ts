@@ -136,8 +136,11 @@ const en: Dictionary = {
     siteDescription: "Modern food magazine with recipes and articles.",
   },
   languageSwitcher: {
-    cs: "CZ",
-    en: "EN",
+    label: "Language",
+    cs: "Czech",
+    en: "English",
+    csShort: "CZ",
+    enShort: "EN",
   },
 };
 

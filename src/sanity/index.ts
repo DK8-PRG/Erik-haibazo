@@ -9,12 +9,16 @@ import { newsletterSubscriber } from "./documents/newsletterSubscriber";
 import { blockContent } from "./objects/blockContent";
 import { imageWithAlt } from "./objects/imageWithAlt";
 import { seo } from "./objects/seo";
+import { localeString, localeText, localeBlockContent } from "./objects/locale";
 
 export const schemaTypes = [
   // Objects (sdílené typy)
   blockContent,
   imageWithAlt,
   seo,
+  localeString,
+  localeText,
+  localeBlockContent,
   // Documents — singletons
   siteSettings,
   linktreePage,

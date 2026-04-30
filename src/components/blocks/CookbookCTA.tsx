@@ -20,19 +20,38 @@ const FALLBACK_FEATURES = [
   { icon: "💛", label: "Limitovaná edice" },
 ];
 
-// Rozdělí nadpis tak, aby závorka `(...)` byla na vlastním nezalomitelném řádku.
-// Např. "MOJE KUCHAŘKA (JIŽ BRZY VENKU)" → ["MOJE KUCHAŘKA", "(JIŽ BRZY VENKU)"].
+// Rozdělí nadpis tak, aby druhá část byla na vlastním řádku.
+//   - Varianta se závorkou: "MOJE KUCHAŘKA (JIŽ BRZY VENKU)" → 2 řádky
+//   - Varianta bez závorky: "MOJE KUCHAŘKA JIŽ BRZY VENKU" → split na "JIŽ"
+//   - Fallback: vrátí původní string beze změny
 function renderHeading(heading: string) {
-  const match = heading.match(/^(.*?)\s*(\([^)]*\))\s*$/);
-  if (!match) return heading;
-  const [, before, paren] = match;
-  return (
-    <>
-      <span className="whitespace-nowrap">{before}</span>
-      <br />
-      <span className="whitespace-nowrap">{paren}</span>
-    </>
-  );
+  const parenMatch = heading.match(/^(.*?)\s*(\([^)]*\))\s*$/);
+  if (parenMatch) {
+    const [, before, paren] = parenMatch;
+    return (
+      <>
+        <span className="block whitespace-nowrap">{before}</span>
+        <span className="mt-2 block whitespace-nowrap text-white/95 sm:mt-3">
+          {paren}
+        </span>
+      </>
+    );
+  }
+
+  const splitMatch = heading.match(/^(.*?)\s+(JIŽ\s+.+)$/i);
+  if (splitMatch) {
+    const [, before, after] = splitMatch;
+    return (
+      <>
+        <span className="block whitespace-nowrap">{before}</span>
+        <span className="mt-2 block whitespace-nowrap text-white/95 sm:mt-3">
+          {after}
+        </span>
+      </>
+    );
+  }
+
+  return heading;
 }
 
 // =============================================================================
@@ -87,13 +106,14 @@ export function CookbookCTA({ data, dict, locale }: CookbookCTAProps) {
               alt={mockupAlt}
               fill
               sizes="(max-width: 768px) 80vw, 40vw"
+              quality={90}
               className="object-contain drop-shadow-[0_20px_60px_rgba(255,201,39,0.25)]"
             />
           </div>
 
           {/* ─── Text + form + features ───────────────────────────────── */}
           <div>
-            <h2 className="text-2xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-3xl md:text-4xl lg:text-[2.75rem]">
+            <h2 className="text-2xl font-extrabold uppercase leading-[1.15] tracking-tight text-white sm:text-3xl md:text-4xl lg:text-[2.75rem]">
               {renderHeading(heading)}
             </h2>
 
