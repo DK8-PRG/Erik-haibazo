@@ -346,10 +346,7 @@ async function run() {
       {
         _key: k(),
         icon: "bowl",
-        label: ls(
-          "Běžně dostupné\nsuroviny",
-          "Easily available\ningredients",
-        ),
+        label: ls("Běžně dostupné\nsuroviny", "Easily available\ningredients"),
       },
       {
         _key: k(),

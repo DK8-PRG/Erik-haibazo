@@ -58,14 +58,11 @@ export function LatestVideo({ data, dict }: LatestVideoProps) {
       className="relative z-0 scroll-mt-16 bg-night pb-16 pt-14 text-white sm:pb-20 sm:pt-[4.5rem] md:pb-24 md:pt-24"
     >
       <Container>
-        <header className="mb-8 flex items-end justify-between gap-6 sm:mb-10">
+        <header className="mb-8 sm:mb-10">
           <h2 className="text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl md:text-4xl">
             {heading}
           </h2>
-          <span
-            aria-hidden
-            className="hidden h-1 flex-1 max-w-[160px] translate-y-[-0.65rem] bg-gold sm:block"
-          />
+          <div className="mt-4 h-1 w-12 bg-gold sm:w-16" aria-hidden />
         </header>
 
         <div className={gridClass}>
