@@ -234,14 +234,9 @@ async function run() {
         );
   if (cookbookMockup) console.log("   ✅ cookbookMockup uploaded");
 
-  const portraitDivider =
-    !FORCE && existing?.portraitDivider
-      ? undefined
-      : await uploadLocalImage(
-          "/images/new/DSC00927.jpg",
-          "Erik Haibazo — portrét divider",
-        );
-  if (portraitDivider) console.log("   ✅ portraitDivider uploaded");
+  // PortraitDivider je VOLITELNÝ — nepushovat automaticky.
+  // Pokud ho Erik chce, nahraje obrázek přímo ve Studiu.
+  const portraitDivider = undefined;
 
   // ─── Partneři ────────────────────────────────────────────────────────────
   let partners: unknown[] | undefined;
